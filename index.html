@@ -1,0 +1,984 @@
+
+      <!DOCTYPE html>
+      <html lang="en">
+        <head>
+          <base href="https://app.bsd.education">
+          <title>Mckennssie Leong — Defense First</title>
+          
+          
+          <style>
+    :root {
+      --black: #10120f;
+      --dark: #181c17;
+      --dark-soft: #222820;
+      --white: #f3f2e9;
+      --muted: #a4aa9e;
+      --lime: #d3f36b;
+      --orange: #ff8059;
+      --line: rgb(243 242 233 / 16%);
+      --mono: "Courier New", monospace;
+      --sans: "Arial", "Helvetica Neue", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 86px;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      color: var(--white);
+      background: var(--black);
+      font-family: var(--sans);
+    }
+
+    body::before {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+      opacity: .14;
+      background-image: radial-gradient(#d3f36b 0.6px, transparent 0.6px);
+      background-size: 23px 23px;
+      mask-image: linear-gradient(to bottom, black, transparent 70%);
+    }
+
+    a { color: inherit; }
+
+    button, input, textarea { font: inherit; }
+
+    .wrap {
+      width: min(1160px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+      color: var(--lime);
+      font: 700 .72rem var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 22px;
+      height: 2px;
+      content: "";
+      background: var(--lime);
+    }
+
+    .header {
+      position: sticky;
+      z-index: 20;
+      top: 0;
+      background: rgb(16 18 15 / 89%);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 1.38rem;
+      letter-spacing: -.09em;
+      text-decoration: none;
+    }
+
+    .brand span { color: var(--lime); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: .84rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color .2s ease;
+    }
+
+    .nav-links a:hover { color: var(--lime); }
+
+    .nav-links .nav-contact {
+      padding: 11px 16px;
+      color: var(--black);
+      background: var(--lime);
+      border-radius: 3px;
+    }
+
+    .nav-links .nav-contact:hover {
+      color: var(--black);
+      background: #e2ff8c;
+    }
+
+    .menu-button {
+      display: none;
+      padding: 9px 12px;
+      color: var(--white);
+      background: transparent;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 690px;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 42px;
+      padding-block: 66px 88px;
+    }
+
+    .hero-copy { position: relative; z-index: 1; }
+
+    .hero h1 {
+      margin: 27px 0 0;
+      font-size: clamp(4.4rem, 10.7vw, 9.5rem);
+      line-height: .76;
+      letter-spacing: -.105em;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--lime);
+    }
+
+    .hero-subtitle {
+      margin: 30px 0 12px;
+      font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+      font-weight: 800;
+      letter-spacing: -.045em;
+    }
+
+    .hero-description {
+      max-width: 430px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 29px;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 49px;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 0 17px;
+      border: 1px solid transparent;
+      border-radius: 3px;
+      font-size: .83rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s ease, background .2s ease, border-color .2s ease;
+    }
+
+    .button:hover { transform: translateY(-3px); }
+
+    .button-primary {
+      color: var(--black);
+      background: var(--lime);
+    }
+
+    .button-primary:hover { background: #e2ff8c; }
+
+    .button-outline {
+      color: var(--white);
+      border-color: var(--line);
+    }
+
+    .button-outline:hover {
+      background: var(--dark);
+      border-color: var(--lime);
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 490px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: var(--lime);
+      border-radius: 4px;
+      transform: rotate(1.4deg);
+      box-shadow: 14px 14px 0 rgb(211 243 107 / 14%);
+    }
+
+    .hero-visual::before {
+      position: absolute;
+      inset: 17px;
+      content: "";
+      border: 1px solid rgb(16 18 15 / 30%);
+    }
+
+    .court {
+      position: absolute;
+      inset: 12% 9%;
+      width: 82%;
+      height: 76%;
+      opacity: .62;
+    }
+
+    .visual-word {
+      position: absolute;
+      z-index: 2;
+      bottom: 47px;
+      left: 28px;
+      color: var(--black);
+      font-size: clamp(3rem, 7vw, 6.7rem);
+      font-weight: 900;
+      line-height: .78;
+      letter-spacing: -.1em;
+      transform: rotate(-4deg);
+    }
+
+    .visual-word span {
+      display: block;
+      margin-top: 12px;
+      color: var(--orange);
+      font-size: .42em;
+      letter-spacing: .03em;
+    }
+
+    .visual-label {
+      position: absolute;
+      top: 29px;
+      right: 28px;
+      z-index: 2;
+      padding: 8px 10px;
+      color: var(--white);
+      background: var(--black);
+      font: 700 .68rem var(--mono);
+      letter-spacing: .09em;
+    }
+
+    .ball {
+      position: absolute;
+      top: 22%;
+      right: 15%;
+      z-index: 2;
+      display: grid;
+      width: 105px;
+      aspect-ratio: 1;
+      place-items: center;
+      color: var(--black);
+      background: var(--orange);
+      border: 3px solid var(--black);
+      border-radius: 50%;
+      font-size: 3.3rem;
+      box-shadow: 8px 9px 0 var(--black);
+      animation: ball-bob 3.5s ease-in-out infinite;
+    }
+
+    @keyframes ball-bob {
+      50% { transform: translateY(-10px) rotate(9deg); }
+    }
+
+    .hero-bottom {
+      position: absolute;
+      bottom: 26px;
+      left: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font: 700 .67rem var(--mono);
+      letter-spacing: .1em;
+    }
+
+    .hero-bottom span {
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--lime);
+    }
+
+    /* TICKER */
+    .ticker {
+      overflow: hidden;
+      padding-block: 17px;
+      color: var(--black);
+      background: var(--lime);
+      transform: rotate(-1deg) scale(1.02);
+    }
+
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      gap: 28px;
+      animation: ticker-scroll 28s linear infinite;
+      font: 900 .82rem var(--mono);
+      letter-spacing: .11em;
+    }
+
+    .ticker-track span { white-space: nowrap; }
+
+    @keyframes ticker-scroll {
+      to { transform: translateX(-50%); }
+    }
+
+    /* ABOUT */
+    .section { padding-block: 112px; }
+
+    .section-heading {
+      margin-bottom: 42px;
+    }
+
+    .section-title {
+      margin: 16px 0 0;
+      font-size: clamp(2.7rem, 6.6vw, 5.8rem);
+      line-height: .91;
+      letter-spacing: -.09em;
+    }
+
+    .lime { color: var(--lime); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-copy {
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.9;
+    }
+
+    .about-copy p:first-child { margin-top: 0; }
+
+    .mindset-note {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-top: 27px;
+      padding: 17px;
+      color: var(--white);
+      background: var(--dark);
+      border-left: 3px solid var(--lime);
+      font-weight: 700;
+    }
+
+    .mindset-note b {
+      color: var(--lime);
+      font-size: 1.4rem;
+    }
+
+    /* SPORTS */
+    .sports-section {
+      background:
+        radial-gradient(ellipse at 100% 0%, rgb(211 243 107 / 9%), transparent 30rem),
+        #171b16;
+      border-block: 1px solid var(--line);
+    }
+
+    .sports-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 38px;
+    }
+
+    .sports-top > p {
+      max-width: 360px;
+      margin: 0 0 5px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .sports-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .sport-card {
+      position: relative;
+      min-height: 350px;
+      padding: 27px;
+      overflow: hidden;
+      color: var(--black);
+      background: var(--lime);
+      border-radius: 4px;
+      transition: transform .2s ease;
+    }
+
+    .sport-card:hover { transform: translateY(-6px); }
+
+    .sport-card.soccer { background: var(--orange); }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      font: 700 .68rem var(--mono);
+      letter-spacing: .09em;
+    }
+
+    .sport-symbol {
+      display: grid;
+      width: 76px;
+      height: 76px;
+      margin-top: 30px;
+      place-items: center;
+      background: rgb(16 18 15 / 9%);
+      border: 1px solid rgb(16 18 15 / 20%);
+      border-radius: 50%;
+      font-size: 2.35rem;
+    }
+
+    .sport-card h3 {
+      margin: 17px 0 2px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      letter-spacing: -.07em;
+    }
+
+    .position {
+      margin: 0;
+      font: 700 .68rem var(--mono);
+      letter-spacing: .11em;
+    }
+
+    .sport-description {
+      max-width: 415px;
+      margin: 17px 0 0;
+      font-size: .91rem;
+      line-height: 1.65;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 20px;
+    }
+
+    .tags span {
+      padding: 6px 9px;
+      border: 1px solid rgb(16 18 15 / 28%);
+      border-radius: 30px;
+      font-size: .7rem;
+      font-weight: 700;
+    }
+
+    /* MINDSET */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 75px;
+    }
+
+    .skill-list { border-top: 1px solid var(--line); }
+
+    .skill {
+      display: grid;
+      grid-template-columns: 42px 1fr 24px;
+      gap: 12px;
+      align-items: center;
+      min-height: 76px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .skill-number {
+      color: var(--lime);
+      font: .73rem var(--mono);
+    }
+
+    .skill h3 {
+      margin: 0;
+      font-size: .99rem;
+      line-height: 1.45;
+    }
+
+    .skill-arrow {
+      color: var(--lime);
+      transition: transform .2s ease;
+    }
+
+    .skill:hover .skill-arrow { transform: translate(3px, -3px); }
+
+    /* CONTACT */
+    .contact-section {
+      padding-top: 0;
+    }
+
+    .contact-panel {
+      display: grid;
+      grid-template-columns: 1fr .82fr;
+      gap: 65px;
+      padding: 44px;
+      background:
+        radial-gradient(ellipse at 0 100%, rgb(211 243 107 / 12%), transparent 25rem),
+        var(--dark);
+      border: 1px solid var(--line);
+      border-radius: 5px;
+    }
+
+    .contact-intro > p:not(.eyebrow) {
+      max-width: 370px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .email-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: var(--lime);
+      font-weight: 700;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .email-link:hover { text-decoration: underline; }
+
+    .form {
+      display: grid;
+      gap: 10px;
+    }
+
+    .form label {
+      margin-top: 5px;
+      font-size: .78rem;
+      font-weight: 700;
+    }
+
+    .form input,
+    .form textarea {
+      width: 100%;
+      padding: 13px;
+      color: var(--white);
+      background: var(--black);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      outline: none;
+    }
+
+    .form input:focus,
+    .form textarea:focus {
+      border-color: var(--lime);
+      box-shadow: 0 0 0 2px rgb(211 243 107 / 14%);
+    }
+
+    .form textarea { resize: vertical; }
+
+    .form button {
+      justify-self: start;
+      margin-top: 8px;
+      cursor: pointer;
+    }
+
+    .form-note {
+      min-height: 18px;
+      margin: 0;
+      color: var(--muted);
+      font-size: .73rem;
+      line-height: 1.5;
+    }
+
+    .footer {
+      padding-block: 23px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      color: var(--muted);
+      font-size: .76rem;
+    }
+
+    .back-top {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .back-top:hover { color: var(--lime); }
+
+    @media (max-width: 780px) {
+      .menu-button { display: block; }
+
+      .nav-links {
+        position: absolute;
+        top: 75px;
+        right: 0;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 24px 20px;
+        background: var(--black);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links.open { display: flex; }
+
+      .nav-links a {
+        padding: 14px 2px;
+      }
+
+      .nav-links .nav-contact {
+        margin-top: 8px;
+        padding: 12px;
+        text-align: center;
+      }
+
+      .hero {
+        min-height: 0;
+        grid-template-columns: 1fr;
+        gap: 44px;
+        padding-top: 68px;
+        padding-bottom: 78px;
+      }
+
+      .hero-visual {
+        min-height: 390px;
+        margin-inline: 4px;
+      }
+
+      .hero-bottom { bottom: 24px; }
+
+      .about-grid,
+      .skills-grid,
+      .contact-panel {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .sports-top {
+        display: block;
+      }
+
+      .sports-top > p { margin-top: 24px; }
+
+      .section { padding-block: 80px; }
+
+      .contact-section { padding-top: 0; }
+
+      .contact-panel { padding: 28px; }
+    }
+
+    @media (max-width: 520px) {
+      .wrap { width: calc(100% - 32px); }
+
+      .hero h1 { font-size: clamp(4rem, 19vw, 6rem); }
+
+      .hero-visual { min-height: 310px; }
+
+      .visual-word {
+        bottom: 33px;
+        left: 20px;
+        font-size: 3.7rem;
+      }
+
+      .ball {
+        top: 21%;
+        right: 11%;
+        width: 78px;
+        font-size: 2.5rem;
+      }
+
+      .sports-grid { grid-template-columns: 1fr; }
+
+      .sport-card { min-height: 320px; }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+          
+          
+          
+        </head>
+        <body>
+          
+  <header class="header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Mckennssie home">M<span>.</span></a>
+
+      <button
+        class="menu-button"
+        id="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        Menu
+      </button>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#about">About</a>
+        <a href="#sports">Sports</a>
+        <a href="#mindset">Mindset</a>
+        <a class="nav-contact" href="#contact">Contact ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">Student athlete · Defense first</p>
+        <h1>MCKENN<span>SSIE.</span></h1>
+        <p class="hero-subtitle">I make defense my game.</p>
+        <p class="hero-description">
+          I'm Mckennssie Leong—a student, basketball player, and soccer
+          player. I love reading the play, putting in the work, and showing
+          up for my team.
+        </p>
+
+        <div class="button-row">
+          <a class="button button-primary" href="#sports">Explore my sports <span>↓</span></a>
+          <a class="button button-outline" href="mailto:mckennssie.leong@gmail.com">
+            Email me <span>↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual" role="img" aria-label="Illustrated basketball court with the words Defense is a skill">
+        <svg class="court" viewBox="0 0 500 500" aria-hidden="true">
+          <rect x="25" y="25" width="450" height="450" fill="none" stroke="#10120f" stroke-width="3"/>
+          <line x1="250" y1="25" x2="250" y2="475" stroke="#10120f" stroke-width="3"/>
+          <circle cx="250" cy="250" r="82" fill="none" stroke="#10120f" stroke-width="3"/>
+          <rect x="25" y="150" width="105" height="200" fill="none" stroke="#10120f" stroke-width="3"/>
+          <rect x="370" y="150" width="105" height="200" fill="none" stroke="#10120f" stroke-width="3"/>
+          <path d="M130 155 A100 100 0 0 1 130 345" fill="none" stroke="#10120f" stroke-width="3"/>
+          <path d="M370 155 A100 100 0 0 0 370 345" fill="none" stroke="#10120f" stroke-width="3"/>
+        </svg>
+        <span class="visual-label">PLAYER PROFILE / 01</span>
+        <div class="ball" aria-hidden="true">🏀</div>
+        <div class="visual-word">DEFENSE<span>IS A SKILL.</span></div>
+      </div>
+
+      <div class="hero-bottom"><span></span> SCROLL TO MEET THE PLAYER</div>
+    </section>
+
+    <div class="ticker" aria-label="Focus, effort, teamwork, repeat">
+      <div class="ticker-track" aria-hidden="true">
+        <span>FOCUS ✳ EFFORT ✳ TEAMWORK ✳ DEFENSE ✳ KEEP IMPROVING ✳</span>
+        <span>FOCUS ✳ EFFORT ✳ TEAMWORK ✳ DEFENSE ✳ KEEP IMPROVING ✳</span>
+      </div>
+    </div>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <p class="eyebrow">01 / A little about me</p>
+          <h2 class="section-title">Good defense<br>takes <span class="lime">heart.</span></h2>
+        </div>
+        <div class="about-copy">
+          <p>
+            I'm Mckennssie. I play defense in basketball and soccer (football),
+            where focus, communication, and effort can make a real difference.
+          </p>
+          <p>
+            I'm always working to improve, learn from my teammates, and do the
+            small things that help the whole team succeed.
+          </p>
+          <div class="mindset-note">
+            <b aria-hidden="true">✳</b>
+            <span>Stay ready. Stay positive. Play for the team.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section sports-section" id="sports">
+      <div class="wrap">
+        <div class="sports-top">
+          <div>
+            <p class="eyebrow">02 / Where I play</p>
+            <h2 class="section-title">Two sports.<br><span class="lime">One mindset.</span></h2>
+          </div>
+          <p>
+            I take pride in defending, communicating, and giving my team
+            everything I've got—on the court and on the pitch.
+          </p>
+        </div>
+
+        <div class="sports-grid">
+          <article class="sport-card">
+            <div class="card-meta"><span>01 — ON THE COURT</span><span>🏀</span></div>
+            <div class="sport-symbol" role="img" aria-label="Basketball">🏀</div>
+            <h3>Basketball</h3>
+            <p class="position">DEFENSE</p>
+            <p class="sport-description">
+              Stay in front, read the play, and make it harder for the other
+              team to get a good look.
+            </p>
+            <div class="tags">
+              <span>Focus</span><span>Footwork</span><span>Teamwork</span>
+            </div>
+          </article>
+
+          <article class="sport-card soccer">
+            <div class="card-meta"><span>02 — ON THE PITCH</span><span>⚽</span></div>
+            <div class="sport-symbol" role="img" aria-label="Soccer ball">⚽</div>
+            <h3>Soccer / Football</h3>
+            <p class="position">DEFENSE</p>
+            <p class="sport-description">
+              Read the attack, protect space, and support my teammates when
+              the other side has the ball.
+            </p>
+            <div class="tags">
+              <span>Awareness</span><span>Effort</span><span>Communication</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="mindset">
+      <div class="wrap skills-grid">
+        <div>
+          <p class="eyebrow">03 / What I bring</p>
+          <h2 class="section-title">The work<br>behind the <span class="lime">game.</span></h2>
+        </div>
+
+        <div class="skill-list">
+          <div class="skill">
+            <span class="skill-number">01</span>
+            <h3>Defensive focus — stay alert and read the play.</h3>
+            <span class="skill-arrow" aria-hidden="true">↗</span>
+          </div>
+          <div class="skill">
+            <span class="skill-number">02</span>
+            <h3>Teamwork — support the people around me.</h3>
+            <span class="skill-arrow" aria-hidden="true">↗</span>
+          </div>
+          <div class="skill">
+            <span class="skill-number">03</span>
+            <h3>Communication — talk, listen, stay connected.</h3>
+            <span class="skill-arrow" aria-hidden="true">↗</span>
+          </div>
+          <div class="skill">
+            <span class="skill-number">04</span>
+            <h3>Improvement — show up ready to learn.</h3>
+            <span class="skill-arrow" aria-hidden="true">↗</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="wrap contact-panel">
+        <div class="contact-intro">
+          <p class="eyebrow">04 / Say hello</p>
+          <h2 class="section-title">Let's make<br>the next <span class="lime">play.</span></h2>
+          <p>Want to talk sports, teamwork, or an opportunity? Send me a message.</p>
+          <a class="email-link" href="mailto:mckennssie.leong@gmail.com">
+            mckennssie.leong@gmail.com ↗
+          </a>
+        </div>
+
+        <form class="form" id="contact-form">
+          <label for="name">Your name</label>
+          <input id="name" name="name" type="text" placeholder="Name" required>
+
+          <label for="email">Your email</label>
+          <input id="email" name="email" type="email" placeholder="name@example.com" required>
+
+          <label for="message">Your message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Write a message..." required></textarea>
+
+          <button class="button button-primary" type="submit">Prepare email ↗</button>
+          <p class="form-note" id="form-note" aria-live="polite">
+            This opens your email app with your message ready to send.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <a class="brand" href="#home">M<span>.</span></a>
+      <span>Made by Mckennssie · <span id="year"></span></span>
+      <a class="back-top" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  
+
+          
+          <script>
+    const menuButton = document.querySelector("#menu-button");
+    const navLinks = document.querySelector("#nav-links");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+      menuButton.textContent = isOpen ? "Close" : "Menu";
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.textContent = "Menu";
+      });
+    });
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+
+    document.querySelector("#contact-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const subject = encodeURIComponent("Portfolio message from " + data.get("name"));
+      const body = encodeURIComponent(
+        "From: " + data.get("name") +
+        "\nEmail: " + data.get("email") +
+        "\n\n" + data.get("message")
+      );
+
+      window.location.href =
+        "mailto:mckennssie.leong@gmail.com?subject=" + subject + "&body=" + body;
+    });
+  </script>
+          
+        </body>
+      </html>
+    
